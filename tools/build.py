@@ -1,5 +1,7 @@
 """Checks every package in packages/, packs it, and writes dist/ for the "packages" release:
-one <id>-<version>.cdwidget per package and index.txt (id, sha256, download url per line).
+one <id>-<version>.cdwidget per package and index.txt: a "#" comment line, then one line per
+package with tab-separated id, sha256, download url, version, author, category and name.
+Calmdesk lists packages from it and downloads one only when its tile is shown.
 
 Run on Windows with widget-dev on PATH (cargo install --git https://github.com/rom5n/widgine widgine).
 """
@@ -58,10 +60,13 @@ for pkg in sorted(p for p in (root / "packages").iterdir() if p.is_dir()):
     file = dist / f"{pid}-{version}.cdwidget"
     subprocess.run(["widget-dev", "pack", str(pkg), str(file)], check=True, capture_output=True)
     sha = hashlib.sha256(file.read_bytes()).hexdigest()
-    lines.append(f"{pid}\t{sha}\t{URL}{file.name}\n")
+    fields = [pid, sha, URL + file.name, version, manifest["author"], manifest.get("category", ""), manifest.get("name", pid)]
+    # Tabs and line breaks inside a field would break the line format.
+    lines.append("\t".join(" ".join(str(f).split()) for f in fields) + "\n")
 
 if errors:
     print("\n".join(errors), file=sys.stderr)
     sys.exit(1)
-(dist / "index.txt").write_text("".join(lines), encoding="utf-8", newline="\n")
+# Never empty: GitHub refuses to upload an empty file.
+(dist / "index.txt").write_text("# Calmdesk widgets index\n" + "".join(lines), encoding="utf-8", newline="\n")
 print(f"{len(lines)} packages")
