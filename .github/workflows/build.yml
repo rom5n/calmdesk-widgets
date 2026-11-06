@@ -1,0 +1,32 @@
+name: build
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install widget-dev
+        run: cargo install --git https://github.com/rom5n/widgine widgine --locked
+      - name: Check and pack
+        run: python tools/build.py
+      # Only merged packages are published. The release keeps one file per id and version, so
+      # links to earlier versions keep working.
+      - name: Publish
+        if: github.event_name == 'push'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view packages >/dev/null 2>&1 || gh release create packages --title "Packages" --notes "Built by CI from packages/. Calmdesk reads index.txt."
+          gh release upload packages dist/* --clobber
