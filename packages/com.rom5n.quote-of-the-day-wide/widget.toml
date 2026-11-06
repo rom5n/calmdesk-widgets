@@ -1,0 +1,96 @@
+id = "com.rom5n.quote-of-the-day-wide"
+name = "Quote of the day"
+variant = "Wide"
+category = "Productivity"
+engine = "^0.1"
+size = [352, 170]
+author = "rom5n"
+version = "1.0.0"
+icon = "assets/icon.svg"
+homepage = "https://github.com/rom5n/calmdesk-widgets"
+
+[card]
+radius = 26
+background = "frosted"
+border = false
+shadow = true
+
+[font]
+family = "Nunito"
+weight = 400
+
+[customize]
+allow = ["size", "background", "theme", "font"]
+
+[[source]]
+key = "q"
+url = "https://favqs.com/api/qotd"
+json = "quote.body"
+every = "3h"
+
+[[source]]
+key = "a"
+url = "https://favqs.com/api/qotd"
+json = "quote.author"
+every = "3h"
+
+[[source]]
+key = "url"
+url = "https://favqs.com/api/qotd"
+json = "quote.url"
+every = "3h"
+
+[strings.ru]
+"Quote of the day" = "Цитата дня"
+"Wide" = "Широкий"
+"Loading…" = "Загрузка…"
+
+[strings.uk]
+"Quote of the day" = "Цитата дня"
+"Wide" = "Широкий"
+"Loading…" = "Завантаження…"
+
+[strings.de]
+"Quote of the day" = "Zitat des Tages"
+"Wide" = "Breit"
+"Loading…" = "Wird geladen…"
+
+[strings.fr]
+"Quote of the day" = "Citation du jour"
+"Wide" = "Large"
+"Loading…" = "Chargement…"
+
+[strings.es]
+"Quote of the day" = "Cita del día"
+"Wide" = "Ancho"
+"Loading…" = "Cargando…"
+
+[strings.it]
+"Quote of the day" = "Citazione del giorno"
+"Wide" = "Largo"
+"Loading…" = "Caricamento…"
+
+[strings.pt]
+"Quote of the day" = "Citação do dia"
+"Wide" = "Largo"
+"Loading…" = "Carregando…"
+
+[strings.pl]
+"Quote of the day" = "Cytat dnia"
+"Wide" = "Szeroki"
+"Loading…" = "Ładowanie…"
+
+[strings.zh]
+"Quote of the day" = "每日名言"
+"Wide" = "宽"
+"Loading…" = "正在加载…"
+
+[strings.ja]
+"Quote of the day" = "今日の名言"
+"Wide" = "ワイド"
+"Loading…" = "読み込み中…"
+
+[strings.ko]
+"Quote of the day" = "오늘의 명언"
+"Wide" = "와이드"
+"Loading…" = "불러오는 중…"
