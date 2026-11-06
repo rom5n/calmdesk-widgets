@@ -22,6 +22,18 @@ shows up in the Community section of the Calmdesk gallery, where users install i
 To update a widget, change its folder and raise `version`. Users see "Update available" on its
 tile.
 
+## Downloads and author pages
+
+CI counts each package's downloads once a day and writes `authors/<your-name>.md` with your
+widgets and totals: a link you can share. The gallery shows the count on each tile and lists
+the most downloaded widgets first.
+
+## Featured
+
+`featured.txt` holds the gallery's Featured shelves ("Widget of the week", seasonal packs):
+one per line with a title, first and last day, and package ids. Calmdesk shows the shelves
+whose dates include today.
+
 ## Rules
 
 - Packages are declarative (layout and assets, no code), at most 20 MB.

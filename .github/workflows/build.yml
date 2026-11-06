@@ -4,6 +4,9 @@ on:
   pull_request:
   push:
     branches: [main]
+  # Fresh download counts once a day.
+  schedule:
+    - cron: "17 3 * * *"
 
 permissions:
   contents: write
@@ -19,14 +22,26 @@ jobs:
       - name: Install widget-dev
         run: cargo install --git https://github.com/rom5n/widgine widgine --locked
       - name: Check and pack
+        shell: bash
+        env:
+          # Counts and author pages only for main; pull requests just check.
+          GH_TOKEN: ${{ github.event_name != 'pull_request' && github.token || '' }}
         run: python tools/build.py
       # Only merged packages are published. The release keeps one file per id and version, so
       # links to earlier versions keep working.
       - name: Publish
-        if: github.event_name == 'push'
+        if: github.event_name != 'pull_request'
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release view packages >/dev/null 2>&1 || gh release create packages --title "Packages" --notes "Built by CI from packages/. Calmdesk reads index.txt."
           gh release upload packages dist/* --clobber
+      - name: Commit author pages
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          git add --all -- authors || true
+          git diff --cached --quiet && exit 0
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "Author pages [skip ci]"
+          git push

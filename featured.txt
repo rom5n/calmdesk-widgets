@@ -1,0 +1,2 @@
+# Featured shelves in the Calmdesk gallery, one per line, tab-separated:
+# title, first day, last day (YYYY-MM-DD), comma-separated package ids.
