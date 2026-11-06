@@ -1,0 +1,12 @@
+<widget>
+  <!-- favqs.com quote of the day: {src.q} text, {src.a} author, {src.url} its page. -->
+  <column padding="16 18 14 18" gap="6" width="fill" height="fill">
+    <row gap="6" align="center" width="fill">
+      <image src="assets/mark.svg" width="14" height="14"/>
+      <text value="{str.Quote of the day}" size="12" weight="700" color="#AF52DE" ellipsis="true" grow="1"/>
+    </row>
+    <text if="src.q" value="{src.q}" size="13" weight="600" width="fill" grow="1" action="open:{src.url}"/>
+    <text if="!src.q" value="{str.Loading…}" size="13" color="secondary" width="fill" grow="1"/>
+    <text if="src.a" value="— {src.a}" size="11" color="secondary" ellipsis="true" width="fill"/>
+  </column>
+</widget>

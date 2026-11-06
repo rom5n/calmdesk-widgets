@@ -1,0 +1,96 @@
+id = "com.rom5n.quote-of-the-day"
+name = "Quote of the day"
+variant = "Small"
+category = "Productivity"
+engine = "^0.1"
+size = [170, 170]
+author = "rom5n"
+version = "1.0.0"
+icon = "assets/icon.svg"
+homepage = "https://github.com/rom5n/calmdesk-widgets"
+
+[card]
+radius = 26
+background = "frosted"
+border = false
+shadow = true
+
+[font]
+family = "Nunito"
+weight = 400
+
+[customize]
+allow = ["size", "background", "theme", "font"]
+
+[[source]]
+key = "q"
+url = "https://favqs.com/api/qotd"
+json = "quote.body"
+every = "3h"
+
+[[source]]
+key = "a"
+url = "https://favqs.com/api/qotd"
+json = "quote.author"
+every = "3h"
+
+[[source]]
+key = "url"
+url = "https://favqs.com/api/qotd"
+json = "quote.url"
+every = "3h"
+
+[strings.ru]
+"Quote of the day" = "Цитата дня"
+"Small" = "Маленький"
+"Loading…" = "Загрузка…"
+
+[strings.uk]
+"Quote of the day" = "Цитата дня"
+"Small" = "Малий"
+"Loading…" = "Завантаження…"
+
+[strings.de]
+"Quote of the day" = "Zitat des Tages"
+"Small" = "Klein"
+"Loading…" = "Wird geladen…"
+
+[strings.fr]
+"Quote of the day" = "Citation du jour"
+"Small" = "Petit"
+"Loading…" = "Chargement…"
+
+[strings.es]
+"Quote of the day" = "Cita del día"
+"Small" = "Pequeño"
+"Loading…" = "Cargando…"
+
+[strings.it]
+"Quote of the day" = "Citazione del giorno"
+"Small" = "Piccolo"
+"Loading…" = "Caricamento…"
+
+[strings.pt]
+"Quote of the day" = "Citação do dia"
+"Small" = "Pequeno"
+"Loading…" = "Carregando…"
+
+[strings.pl]
+"Quote of the day" = "Cytat dnia"
+"Small" = "Mały"
+"Loading…" = "Ładowanie…"
+
+[strings.zh]
+"Quote of the day" = "每日名言"
+"Small" = "小"
+"Loading…" = "正在加载…"
+
+[strings.ja]
+"Quote of the day" = "今日の名言"
+"Small" = "小"
+"Loading…" = "読み込み中…"
+
+[strings.ko]
+"Quote of the day" = "오늘의 명언"
+"Small" = "작게"
+"Loading…" = "불러오는 중…"
